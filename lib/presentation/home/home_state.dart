@@ -8,6 +8,11 @@ part 'home_state.freezed.dart';
 class HomeState with _$HomeState {
   final List<Photo> photos;
   final bool isLoading;
+  final String errorMessage;
 
-  HomeState({this.photos = const [], this.isLoading = false});
+  HomeState({
+    this.photos = const [],
+    this.isLoading = false,
+    this.errorMessage = '',
+  });
 }

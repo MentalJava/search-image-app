@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeState {
 
- List<Photo> get photos; bool get isLoading;
+ List<Photo> get photos; bool get isLoading; String get errorMessage;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.photos, photos)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.photos, photos)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(photos),isLoading);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(photos),isLoading,errorMessage);
 
 @override
 String toString() {
-  return 'HomeState(photos: $photos, isLoading: $isLoading)';
+  return 'HomeState(photos: $photos, isLoading: $isLoading, errorMessage: $errorMessage)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- List<Photo> photos, bool isLoading
+ List<Photo> photos, bool isLoading, String errorMessage
 });
 
 
@@ -63,11 +63,12 @@ class _$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? photos = null,Object? isLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? photos = null,Object? isLoading = null,Object? errorMessage = null,}) {
   return _then(HomeState(
 photos: null == photos ? _self.photos : photos // ignore: cast_nullable_to_non_nullable
 as List<Photo>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
