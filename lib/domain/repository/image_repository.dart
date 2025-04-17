@@ -1,5 +1,5 @@
-import 'package:search_image_app/domain/model/image.dart';
+import 'package:search_image_app/domain/model/photo.dart';
 
 abstract interface class ImageRepository {
-  Future<List<Image>> fetchImages(String query);
+  Future<List<Photo>> fetchImages(String query);
 }

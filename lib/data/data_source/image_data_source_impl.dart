@@ -15,10 +15,10 @@ class ImageDataSourceImpl implements ImageDataSource {
   @override
   Future<List<ImageDto>> fetchImages(String query) async {
     final response = await client.get(
-      Uri.parse('$_baseUrl?key$_key&q=$query&image_type=photo&pretty=true'),
+      Uri.parse('$_baseUrl?key=$_key&q=$query&image_type=photo&pretty=true'),
     );
     final jsonResponse = jsonDecode(response.body);
-    final List<Map<String, dynamic>> hits = jsonResponse['hits'];
+    final List<dynamic> hits = jsonResponse['hits'];
 
     return hits.map((e) => ImageDto.fromJson(e)).toList();
   }

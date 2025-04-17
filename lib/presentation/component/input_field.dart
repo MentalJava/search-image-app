@@ -2,15 +2,23 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   final void Function(String value) onValueChange;
-  const InputField({super.key, required this.onValueChange});
+  final TextEditingController textEditingController;
+
+  const InputField({
+    super.key,
+    required this.onValueChange,
+    required this.textEditingController,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: onValueChange,
+      controller: textEditingController,
       decoration: InputDecoration(
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            onValueChange(textEditingController.text);
+          },
           icon: Icon(Icons.search),
           color: Colors.lightBlue,
         ),
