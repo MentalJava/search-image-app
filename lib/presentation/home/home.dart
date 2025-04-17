@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:search_image_app/presentation/component/image_card.dart';
 import 'package:search_image_app/presentation/component/input_field.dart';
 import 'package:search_image_app/presentation/home/home_view_model.dart';
@@ -28,7 +29,11 @@ class Home extends StatelessWidget {
                   },
                 ),
                 _homeViewModel.state.isLoading
-                    ? CircularProgressIndicator(color: Colors.black)
+                    ? Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(color: Colors.black),
+                      ),
+                    )
                     : Expanded(
                       child: GridView.builder(
                         itemCount: _homeViewModel.state.photos.length,
@@ -39,7 +44,15 @@ class Home extends StatelessWidget {
                         ),
                         itemBuilder: (context, index) {
                           final photo = _homeViewModel.state.photos[index];
-                          return ImageCard(photo: photo);
+                          return GestureDetector(
+                            onTap: () {
+                              context.pushNamed('detail', extra: photo);
+                            },
+                            child: Hero(
+                              tag: photo.id,
+                              child: ImageCard(photo: photo),
+                            ),
+                          );
                         },
                       ),
                     ),
