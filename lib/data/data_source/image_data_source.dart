@@ -1,3 +1,5 @@
+import 'package:search_image_app/data/dto/image_dto.dart';
+
 abstract interface class ImageDataSource {
-  Future<List<dynamic>> fetchImages(String query);
+  Future<List<ImageDto>> fetchImages(String query);
 }

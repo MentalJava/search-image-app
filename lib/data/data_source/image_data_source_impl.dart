@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:search_image_app/data/data_source/image_data_source.dart';
+import 'package:search_image_app/data/dto/image_dto.dart';
 
 class ImageDataSourceImpl implements ImageDataSource {
   final _baseUrl = 'https://pixabay.com/api/';
@@ -12,13 +13,13 @@ class ImageDataSourceImpl implements ImageDataSource {
   ImageDataSourceImpl({required this.client});
 
   @override
-  Future<List<dynamic>> fetchImages(String query) async {
+  Future<List<ImageDto>> fetchImages(String query) async {
     final response = await client.get(
       Uri.parse('$_baseUrl?key$_key&q=$query&image_type=photo&pretty=true'),
     );
     final jsonResponse = jsonDecode(response.body);
     final List<Map<String, dynamic>> hits = jsonResponse['hits'];
 
-    return [];
+    return hits.map((e) => ImageDto.fromJson(e)).toList();
   }
 }
