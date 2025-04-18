@@ -26,6 +26,7 @@ class Home extends StatelessWidget {
                   textEditingController: textEditingController,
                   onValueChange: (value) {
                     _homeViewModel.fetchImages(value);
+                    FocusScope.of(context).unfocus();
                   },
                 ),
                 _homeViewModel.state.isLoading
@@ -35,26 +36,36 @@ class Home extends StatelessWidget {
                       ),
                     )
                     : Expanded(
-                      child: GridView.builder(
-                        itemCount: _homeViewModel.state.photos.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 2,
-                        ),
-                        itemBuilder: (context, index) {
-                          final photo = _homeViewModel.state.photos[index];
-                          return GestureDetector(
-                            onTap: () {
-                              context.pushNamed('detail', extra: photo);
-                            },
-                            child: Hero(
-                              tag: photo.id,
-                              child: ImageCard(photo: photo),
-                            ),
-                          );
-                        },
-                      ),
+                      child:
+                          _homeViewModel.state.photos.isEmpty
+                              ? Center(
+                                child: Text(
+                                  '검색 결과가 없습니다 :(',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              )
+                              : GridView.builder(
+                                itemCount: _homeViewModel.state.photos.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                      crossAxisCount: 2,
+                                    ),
+                                itemBuilder: (context, index) {
+                                  final photo =
+                                      _homeViewModel.state.photos[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      context.pushNamed('detail', extra: photo);
+                                    },
+                                    child: Hero(
+                                      tag: photo.id,
+                                      child: ImageCard(photo: photo),
+                                    ),
+                                  );
+                                },
+                              ),
                     ),
               ],
             ),

@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
+      autofocus: false,
       decoration: InputDecoration(
         suffixIcon: IconButton(
           onPressed: () {

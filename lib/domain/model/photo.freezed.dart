@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Photo {
 
- int get id; String get tags; String get previewURL;
+ int get id; String get tags; String get previewURL; String get user; int get views;
 /// Create a copy of Photo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $PhotoCopyWith<Photo> get copyWith => _$PhotoCopyWithImpl<Photo>(this as Photo, 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Photo&&(identical(other.id, id) || other.id == id)&&(identical(other.tags, tags) || other.tags == tags)&&(identical(other.previewURL, previewURL) || other.previewURL == previewURL));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Photo&&(identical(other.id, id) || other.id == id)&&(identical(other.tags, tags) || other.tags == tags)&&(identical(other.previewURL, previewURL) || other.previewURL == previewURL)&&(identical(other.user, user) || other.user == user)&&(identical(other.views, views) || other.views == views));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,tags,previewURL);
+int get hashCode => Object.hash(runtimeType,id,tags,previewURL,user,views);
 
 @override
 String toString() {
-  return 'Photo(id: $id, tags: $tags, previewURL: $previewURL)';
+  return 'Photo(id: $id, tags: $tags, previewURL: $previewURL, user: $user, views: $views)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $PhotoCopyWith<$Res>  {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) _then) = _$PhotoCopyWithImpl;
 @useResult
 $Res call({
- int id, String tags, String previewURL
+ int id, String tags, String previewURL, String user, int views
 });
 
 
@@ -63,12 +63,14 @@ class _$PhotoCopyWithImpl<$Res>
 
 /// Create a copy of Photo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? tags = null,Object? previewURL = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? tags = null,Object? previewURL = null,Object? user = null,Object? views = null,}) {
   return _then(Photo(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as String,previewURL: null == previewURL ? _self.previewURL : previewURL // ignore: cast_nullable_to_non_nullable
-as String,
+as String,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as String,views: null == views ? _self.views : views // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

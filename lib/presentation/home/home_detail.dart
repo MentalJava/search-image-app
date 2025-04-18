@@ -17,6 +17,10 @@ class HomeDetail extends StatelessWidget {
               child: Image.network(fit: BoxFit.cover, photo.previewURL),
             ),
           ),
+          SizedBox(height: 20),
+          Text(photo.user, style: TextStyle(fontSize: 30)),
+          SizedBox(height: 20),
+          Text(photo.views.toString(), style: TextStyle(fontSize: 30)),
         ],
       ),
     );

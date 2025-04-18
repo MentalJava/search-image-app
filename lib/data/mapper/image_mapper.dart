@@ -7,6 +7,8 @@ extension ImageMapper on ImageDto {
       id: id?.toInt() ?? -1,
       tags: tags ?? '',
       previewURL: previewURL ?? '',
+      user: user ?? '유저 정보 없음',
+      views: views?.toInt() ?? -1,
     );
   }
 }
